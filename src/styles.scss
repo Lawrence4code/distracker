@@ -1,0 +1,38 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'lato', sans-serif;
+}
+.nav {
+  background-color: #333;
+}
+
+button {
+  background-color: #333;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 16px;
+  color: #00bfa5;
+  border: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 1.2rem;
+
+  &:hover,
+  &:active {
+    background-color: #00bfa5;
+    color: #333;
+  }
+
+  &.active {
+    background-color: #00bfa5;
+    color: #333;
+  }
+}
+
+form span {
+  color: #00bfa5;
+}

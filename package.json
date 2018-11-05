@@ -1,7 +1,16 @@
 {
   "name": "distracker",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --out-dir prod"
+  },
   "main": "index.js",
   "author": "lawrence4code",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "materialize-css": "^1.0.0-rc.2",
+    "parcel-bundler": "^1.10.3",
+    "sass": "^1.14.3"
+  }
 }
