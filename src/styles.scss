@@ -11,28 +11,29 @@ body {
 }
 
 button {
-  background-color: #333;
+  background-color: #333 !important;
   margin-bottom: 20px;
   width: 100%;
   padding: 16px;
   color: #00bfa5;
   border: 0;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 2px;
   font-size: 1.2rem;
+  transition: all 0.2s ease;
 
   &:hover,
   &:active {
-    background-color: #00bfa5;
+    background-color: #00bfa5 !important;
     color: #333;
   }
 
   &.active {
-    background-color: #00bfa5;
+    background-color: #00bfa5 !important;
     color: #333;
   }
 }
 
 form span {
-  color: #00bfa5;
+  color: #00bfa5 !important;
 }

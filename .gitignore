@@ -39,6 +39,7 @@ maps/
 .vscode/
 public/dist/
 .cache
+config.js
 
 # Internal Test Files # (Check as per project)
 ######################
