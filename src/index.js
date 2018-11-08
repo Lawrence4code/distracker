@@ -19,9 +19,14 @@ btns.forEach(btn => {
       input.setAttribute('id', activity);
 
       formAct.textContent = activity;
+
+      // call update function to update the specific activity in the dom
+      update(data);
     });
   });
 });
+
+const something = 'something';
 
 // form submit
 
@@ -49,3 +54,5 @@ console.log(
 console.log(
   '2) Optional, add animation when button (done) and text are clicked make it smooth'
 );
+
+export default activity;

@@ -9,6 +9,7 @@
   "author": "lawrence4code",
   "license": "MIT",
   "dependencies": {
+    "d3": "^5.7.0",
     "firebase": "^5.5.7",
     "materialize-css": "^1.0.0-rc.2",
     "parcel-bundler": "^1.10.3",
