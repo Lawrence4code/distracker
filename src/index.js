@@ -8,7 +8,7 @@ const formAct = document.querySelector('form span');
 const input = document.querySelector('input');
 const error = document.querySelector('.error');
 
-let activity = 'cycling';
+var activity = 'cycling';
 
 btns.forEach(btn => {
   btn.addEventListener('click', e => {
@@ -25,8 +25,6 @@ btns.forEach(btn => {
     });
   });
 });
-
-const something = 'something';
 
 // form submit
 
@@ -55,4 +53,4 @@ console.log(
   '2) Optional, add animation when button (done) and text are clicked make it smooth'
 );
 
-export default activity;
+// export default activity;
