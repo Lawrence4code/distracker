@@ -33,16 +33,56 @@ const yAxisGroup = graph.append('g').attr('class', 'y-axis');
 // d3 line path generator
 const line = d3
   .line()
-  .x(d => x(new Data(d.date)))
-  .y(d => y(d.distance));
+  .x(function(d) {
+    return x(new Date(d.date));
+  })
+  .y(function(d) {
+    return y(d.distance);
+  });
+
+// line path element
+
+const path = graph.append('path');
+
+// create a dotted line and append that to graph
+const dottedLine = graph
+  .append('g')
+  .attr('class', 'lines')
+  .style('opacity', 0);
+
+// create x dotted line and append to dotted line group
+const xDottedLine = dottedLine
+  .append('line')
+  .attr('stroke', '#aaa')
+  .attr('stroke-width', 1)
+  .attr('stroke-dasharray', 4);
+
+// create y dotted line and append to dotted line group
+const yDottedLine = dottedLine
+  .append('line')
+  .attr('stroke', '#aaa')
+  .attr('stroke-width', 1)
+  .attr('stroke-dasharray', 4);
 
 var update = data => {
   // filtering the data based on button click and specific activity
   data = data.filter(item => item.activity === activity);
 
+  // sort data based on date
+  data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
   // set scale domain
   x.domain(d3.extent(data, d => new Date(d.date)));
   y.domain([0, d3.max(data, d => d.distance)]);
+
+  // update path data
+
+  path
+    .data([data])
+    .attr('fill', 'none')
+    .attr('stroke', '#00bfa5')
+    .attr('stroke-width', 2)
+    .attr('d', line);
 
   // create circle
   const circles = graph.selectAll('circle').data(data);
@@ -66,6 +106,41 @@ var update = data => {
     .attr('cx', d => x(new Date(d.date)))
     .attr('cy', d => y(d.distance))
     .attr('fill', '#ccc');
+
+  // point hover animation
+
+  graph
+    .selectAll('circle')
+    .on('mouseover', (d, i, n) => {
+      d3.select(n[i])
+        .transition()
+        .duration(100)
+        .attr('r', 6)
+        .transition('fill', 'white');
+
+      xDottedLine
+        .attr('x1', x(new Date(d.date)))
+        .attr('x2', x(new Date(d.date)))
+        .attr('y1', graphHeight)
+        .attr('y2', y(d.distance));
+
+      yDottedLine
+        .attr('x1', 0)
+        .attr('x2', x(new Date(d.date)))
+        .attr('y1', y(d.distance))
+        .attr('y2', y(d.distance));
+
+      dottedLine.style('opacity', 1);
+    })
+    .on('mouseleave', (d, i, n) => {
+      d3.select(n[i])
+        .transition()
+        .duration(100)
+        .attr('r', 4)
+        .transition('fill', 'white');
+
+      dottedLine.style('opacity', 0);
+    });
 
   // create axis
   const xAxis = d3
